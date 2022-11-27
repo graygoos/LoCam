@@ -6,9 +6,10 @@
 //
 
 import AVFoundation
+import CoreLocation
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     
     // Capture Session
     var session: AVCaptureSession?
@@ -17,25 +18,102 @@ class ViewController: UIViewController {
     // Video Preview
     let previewLayer = AVCaptureVideoPreviewLayer()
     // Camera Button
+    let photoCameraButton = LCButton()
+    let videoCameraButton = LCButton()
+    
+    // location label
+    let locationLabel = LCLabel(textAlignment: .center, fontSize: 15)
+    let dateLabel = LCLabel()
+    let addressLabel = LCLabel()
+    
+    var locationManager: CLLocationManager?
+    let currentDate = Date()
+    
+    // let photoButton
     private let cameraButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        button.layer.cornerRadius = 50
-        button.layer.borderWidth = 10
-        button.layer.borderColor = UIColor.white.cgColor
+        let buttonConfig = UIImage.SymbolConfiguration(pointSize: 120, weight: .regular, scale: .large)
+        let photoButton = UIImage(systemName: "square.inset.filled", withConfiguration: buttonConfig)
+        let button = UIButton()
+        
+        button.tintColor = .white
+        button.setImage(photoButton, for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+
+        return button
+    }()
+    
+    /*
+    private let videoButton: UIButton = {
+        var buttonConfig = UIImage.SymbolConfiguration(pointSize: 120, weight: .regular, scale: .large)
+        buttonConfig = buttonConfig.applying(UIImage.SymbolConfiguration(paletteColors: [UIColor.systemRed, UIColor.white]))
+        let videoButton = UIImage(systemName: "square.inset.filled", withConfiguration: buttonConfig)
+        let button = UIButton()
+        
+        button.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
         
         return button
     }()
     
-
+    private let settingsButton: UIButton = {
+        let button = UIButton()
+        return button
+    }()
+    */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemCyan
         view.layer.addSublayer(previewLayer)
         view.addSubview(cameraButton)
+        view.addSubview(locationLabel)
+        view.addSubview(dateLabel)
         checkCameraPermissions()
         
         cameraButton.addTarget(self, action: #selector(tappedCameraButton), for: .touchUpInside)
+//        locationLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+//        configurePhotoButton()
+        configureLabels()
+        getUserLocation()
+        
+        locationManager = CLLocationManager()
+        locationManager!.delegate = self
+        locationManager?.requestWhenInUseAuthorization()
+//        var currentLocation: CLLocation!
+
+//        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
+//            currentLocation = locationManager?.location
+//        }
+        
+//        switch locationManager?.authorizationStatus {
+//        case .restricted, .denied:
+//            return
+//        default:
+//            locationManager?.startUpdatingLocation()
+//        }
+        
+//        locationLabel.text = "\(currentLocation.coordinate.longitude), \(currentLocation.coordinate.latitude)"
+        
+        dateLabel.text = "\(Date.now)"
+//        locationLabel.text = "\(latitude), \(longitude)"
+        
+        /*
+        LocationManager.shared.getUserLocation { [weak self] location in
+            DispatchQueue.main.async {
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                // get current location
+                let currentLocation = locations[0] as CLLocation
+                
+                // get lattitude and longitude
+                let latitude = currentLocation.coordinate.latitude
+                let longitude = currentLocation.coordinate.longitude
+            }
+        }
+        */
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -43,7 +121,10 @@ class ViewController: UIViewController {
         
         previewLayer.frame = view.bounds
         
-        cameraButton.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height - 100)
+        cameraButton.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height - 80)
+//        photoCameraButton.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height - 100)
+//        configurePhotoButton()
+//        configureLabels()
     }
     
     private func checkCameraPermissions() {
@@ -100,7 +181,95 @@ class ViewController: UIViewController {
     @objc private func tappedCameraButton() {
         output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
     }
-
+    
+    
+    // Auto Layout
+    func configurePhotoButton() {
+//        view.addSubview(cameraButton)
+        photoCameraButton.addTarget(self, action: #selector(tappedCameraButton), for: .touchUpInside)
+//        photoCameraButton.layer.borderColor = UIColor.white.cgColor
+        photoCameraButton.layer.backgroundColor = UIColor.systemRed.cgColor
+//        photoCameraButton.tintColor = .white
+        
+//        cameraButton.frame = CGRect(x: 0, y: 0, width: 140, height: 140)
+        
+        NSLayoutConstraint.activate([
+            photoCameraButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            photoCameraButton.heightAnchor.constraint(equalToConstant: 70),
+            photoCameraButton.widthAnchor.constraint(equalToConstant: 35)
+        ])
+    }
+    
+    func configureLabels() {
+        
+        locationLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+        locationLabel.textColor = .white
+        
+        NSLayoutConstraint.activate([
+            locationLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            locationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            locationLabel.heightAnchor.constraint(equalToConstant: 15)
+        ])
+        
+        dateLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+        dateLabel.textColor = .white
+        
+        NSLayoutConstraint.activate([
+            dateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+//            dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            dateLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: dateLabel.intrinsicContentSize.width / 2 - dateLabel.intrinsicContentSize.height),
+            dateLabel.heightAnchor.constraint(equalToConstant: 15)
+        ])
+    }
+    
+    
+    func getUserLocation() {
+        // location manager configuration
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.requestWhenInUseAuthorization()
+        
+        // check if location/gps is enabled or not
+        if CLLocationManager.locationServicesEnabled() {
+            // location enabled
+            print("Location enabled")
+            locationManager?.startUpdatingLocation()
+        } else {
+            // location not enabled
+            print("Location not enabled")
+        }
+        
+//        locationLabel.text =
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // get current location
+        let deviceLocation = locations[0] as CLLocation
+        
+        // get lattitude and longitude
+        let latitude = deviceLocation.coordinate.latitude
+        let longitude = deviceLocation.coordinate.longitude
+        
+        locationLabel.text = "\(latitude), \(longitude)"
+        
+        // get address
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(deviceLocation) { (placemarks, error) in
+            if (error != nil) {
+                print("Error in reverseGeocodeLocation")
+            }
+            let placemark = placemarks! as [CLPlacemark]
+            if (placemark.count>0) {
+                let placemark = placemarks![0]
+                
+                let locality = placemark.locality ?? ""
+                let administrativeArea = placemark.administrativeArea ?? ""
+                let country = placemark.country ?? ""
+                
+                self.addressLabel.text = "\(locality), \(administrativeArea), \(country)"
+            }
+        }
+        
+    }
 }
 
 

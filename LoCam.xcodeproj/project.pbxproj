@@ -12,6 +12,9 @@
 		050C9AFE28093132002B493F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C9AFD28093132002B493F /* ViewController.swift */; };
 		050C9B0328093135002B493F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050C9B0228093135002B493F /* Assets.xcassets */; };
 		050C9B0628093135002B493F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050C9B0428093135002B493F /* LaunchScreen.storyboard */; };
+		05B1A6EC2900C575005DA69E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1A6EB2900C575005DA69E /* LocationManager.swift */; };
+		05FB6E4328D9F08800AF30D1 /* LCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FB6E4228D9F08800AF30D1 /* LCButton.swift */; };
+		05FB6E4528DA15E900AF30D1 /* LCLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FB6E4428DA15E900AF30D1 /* LCLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		050C9B0228093135002B493F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		050C9B0528093135002B493F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		050C9B0728093135002B493F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05B1A6EB2900C575005DA69E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		05FB6E4228D9F08800AF30D1 /* LCButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCButton.swift; sourceTree = "<group>"; };
+		05FB6E4428DA15E900AF30D1 /* LCLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,9 @@
 				050C9AF928093132002B493F /* AppDelegate.swift */,
 				050C9AFB28093132002B493F /* SceneDelegate.swift */,
 				050C9AFD28093132002B493F /* ViewController.swift */,
+				05B1A6EB2900C575005DA69E /* LocationManager.swift */,
+				05FB6E4228D9F08800AF30D1 /* LCButton.swift */,
+				05FB6E4428DA15E900AF30D1 /* LCLabel.swift */,
 				050C9B0228093135002B493F /* Assets.xcassets */,
 				050C9B0428093135002B493F /* LaunchScreen.storyboard */,
 				050C9B0728093135002B493F /* Info.plist */,
@@ -134,6 +143,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05FB6E4328D9F08800AF30D1 /* LCButton.swift in Sources */,
+				05FB6E4528DA15E900AF30D1 /* LCLabel.swift in Sources */,
+				05B1A6EC2900C575005DA69E /* LocationManager.swift in Sources */,
 				050C9AFE28093132002B493F /* ViewController.swift in Sources */,
 				050C9AFA28093132002B493F /* AppDelegate.swift in Sources */,
 				050C9AFC28093132002B493F /* SceneDelegate.swift in Sources */,
