@@ -7,6 +7,7 @@
 
 import AVFoundation
 import CoreLocation
+import Photos
 import UIKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
@@ -20,6 +21,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     // Camera Button
     let photoCameraButton = LCButton()
     let videoCameraButton = LCButton()
+    
+    var videoFileOutput: AVCaptureMovieFileOutput?
     
     // location label
     let locationLabel = LCLabel(textAlignment: .center, fontSize: 15)
@@ -35,11 +38,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let photoButton = UIImage(systemName: "square.inset.filled", withConfiguration: buttonConfig)
         let button = UIButton()
         
+//        button.addTarget(ViewController.self, action: #selector(savePhoto), for: .touchUpInside)
         button.tintColor = .white
         button.setImage(photoButton, for: .normal)
         button.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
 
         return button
+    }()
+    
+    let photoImageView: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
     }()
     
     /*
@@ -180,6 +191,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @objc private func tappedCameraButton() {
         output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+        cameraButton.addTarget(ViewController.self, action: #selector(savePhoto), for: .touchUpInside)
+    }
+    
+    @objc private func savePhoto() {
+        guard let previewImage = self.photoImageView.image else { return }
+        
+        PHPhotoLibrary.requestAuthorization { (status) in
+            if status == .authorized {
+                do {
+                    try PHPhotoLibrary.shared().performChangesAndWait {
+                        PHAssetChangeRequest.creationRequestForAsset(from: previewImage)
+                        print("photo has saved in library...")
+                    }
+                } catch let error {
+                    print("failed to save photo in library:", error)
+                }
+            } else {
+                print("Something went wrong with permission....")
+            }
+        }
     }
     
     
