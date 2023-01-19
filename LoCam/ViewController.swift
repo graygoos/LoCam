@@ -11,6 +11,8 @@ import Photos
 import UIKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
+//    let videoOutput = AVCaptureMovieFileOutput()
+//    let videoOutput = AVCaptureVideoDataOutput()
     
     // Capture Session
     var session: AVCaptureSession?
@@ -31,6 +33,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager?
     let currentDate = Date()
+    
+    enum CameraErrors: Swift.Error {
+        case captureSessionAlreadyRunning
+        case captureSessionIsMissing
+        case inputsAreInvalid
+        case invalidOperation
+        case noCamerasAvailable
+        case unknown
+    }
     
     // let photoButton
     private let cameraButton: UIButton = {
@@ -191,12 +202,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @objc private func tappedCameraButton() {
         output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
-        cameraButton.addTarget(ViewController.self, action: #selector(savePhoto), for: .touchUpInside)
+//        cameraButton.addTarget(ViewController.self, action: #selector(savePhoto), for: .touchUpInside)
+//        savePhoto()
     }
     
-    @objc private func savePhoto() {
+    private func savePhoto() {
         guard let previewImage = self.photoImageView.image else { return }
-        
+
         PHPhotoLibrary.requestAuthorization { (status) in
             if status == .authorized {
                 do {
@@ -212,6 +224,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
+    
+    
+//    func savePhotos(completion: @escaping (UIImage?, Error) -> Void) {
+//        guard let session = session, session.isRunning else { completion(nil, ViewController.captureSessionIsMissing); return }
+//    }
     
     
     // Auto Layout
@@ -310,13 +327,17 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
             return
         }
         
-        let image = UIImage(data: data)
+        guard let image = UIImage(data: data) else { return }
         
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        /*
         session?.stopRunning()
         
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFill
         imageView.frame = view.bounds
         view.addSubview(imageView)
+         */
     }
 }
+
