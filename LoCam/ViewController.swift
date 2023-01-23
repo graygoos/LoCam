@@ -202,33 +202,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @objc private func tappedCameraButton() {
         output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
-//        cameraButton.addTarget(ViewController.self, action: #selector(savePhoto), for: .touchUpInside)
-//        savePhoto()
     }
-    
-    private func savePhoto() {
-        guard let previewImage = self.photoImageView.image else { return }
-
-        PHPhotoLibrary.requestAuthorization { (status) in
-            if status == .authorized {
-                do {
-                    try PHPhotoLibrary.shared().performChangesAndWait {
-                        PHAssetChangeRequest.creationRequestForAsset(from: previewImage)
-                        print("photo has saved in library...")
-                    }
-                } catch let error {
-                    print("failed to save photo in library:", error)
-                }
-            } else {
-                print("Something went wrong with permission....")
-            }
-        }
-    }
-    
-    
-//    func savePhotos(completion: @escaping (UIImage?, Error) -> Void) {
-//        guard let session = session, session.isRunning else { completion(nil, ViewController.captureSessionIsMissing); return }
-//    }
     
     
     // Auto Layout
@@ -330,6 +304,7 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
         guard let image = UIImage(data: data) else { return }
         
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        
         /*
         session?.stopRunning()
         
