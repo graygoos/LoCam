@@ -23,8 +23,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     // Camera Button
     let photoCameraButton = LCButton()
     let videoCameraButton = LCButton()
+    let flipCamera = LCButton()
     
     var videoFileOutput: AVCaptureMovieFileOutput?
+    
+    private let sessionQueue = DispatchQueue(label: "session queue")
     
     // location label
     let locationLabel = LCLabel(textAlignment: .center, fontSize: 15)
@@ -49,11 +52,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let photoButton = UIImage(systemName: "square.inset.filled", withConfiguration: buttonConfig)
         let button = UIButton()
         
-//        button.addTarget(ViewController.self, action: #selector(savePhoto), for: .touchUpInside)
         button.tintColor = .white
         button.setImage(photoButton, for: .normal)
         button.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
 
+        return button
+    }()
+    
+    let flipCameraButton : UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "flip-2")?.withRenderingMode(.alwaysTemplate)
+        button.setImage(image, for: .normal)
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -97,6 +108,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 //        configurePhotoButton()
         configureLabels()
         getUserLocation()
+        configureFlipCameraButton()
         
         locationManager = CLLocationManager()
         locationManager!.delegate = self
@@ -142,8 +154,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLayoutSubviews()
         
         previewLayer.frame = view.bounds
-        
+
         cameraButton.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height - 80)
+        
 //        photoCameraButton.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height - 100)
 //        configurePhotoButton()
 //        configureLabels()
@@ -204,6 +217,111 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
     }
     
+    /*
+    func recordVideo() {
+        guard let videoFileOutput = self.videoFileOutput else {
+            return
+        }
+        
+        let videoPreviewLayerOrientation = previewLayer.videoPreviewLayer.connection?.videoOrientation
+        
+        sessionQueue.async {
+            if !videoFileOutput.isRecording {
+                if UIDevice.current.isMultitaskingSupported {
+                    self.backgroundRecordingID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
+                }
+                
+                // Update the orientation on the movie file output video connection before recording.
+                let videoFileOutputConnection = videoFileOutput.connection(with: .video)
+                videoFileOutputConnection?.videoOrientation = videoPreviewLayerOrientation!
+                
+                let availableVideoCodecTypes = videoFileOutput.availableVideoCodecTypes
+                
+                if availableVideoCodecTypes.contains(.hevc) {
+                    videoFileOutput.setOutputSettings([AVVideoCodecKey: AVVideoCodecType.hevc], for: videoFileOutputConnection!)
+                }
+                
+                // Start recording video to a temporary file.
+                let outputFileName = NSUUID().uuidString
+                let outputFilePath = (NSTemporaryDirectory() as NSString).appendingPathComponent((outputFileName as NSString).appendingPathExtension("mov")!)
+                videoFileOutput.startRecording(to: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
+            } else {
+                videoFileOutput.stopRecording()
+            }
+        }
+    }
+    
+    
+    func fileOutput(_ output: AVCaptureFileOutput,
+                    didFinishRecordingTo outputFileURL: URL,
+                    from connections: [AVCaptureConnection],
+                    error: Error?) {
+        // Note: Because we use a unique file path for each recording, a new recording won't overwrite a recording mid-save.
+        func cleanup() {
+            let path = outputFileURL.path
+            if FileManager.default.fileExists(atPath: path) {
+                do {
+                    try FileManager.default.removeItem(atPath: path)
+                } catch {
+                    print("Could not remove file at url: \(outputFileURL)")
+                }
+            }
+            
+            if let currentBackgroundRecordingID = backgroundRecordingID {
+                backgroundRecordingID = UIBackgroundTaskIdentifier.invalid
+                
+                if currentBackgroundRecordingID != UIBackgroundTaskIdentifier.invalid {
+                    UIApplication.shared.endBackgroundTask(currentBackgroundRecordingID)
+                }
+            }
+        }
+        
+        var success = true
+        
+        if error != nil {
+            print("Movie file finishing error: \(String(describing: error))")
+            success = (((error! as NSError).userInfo[AVErrorRecordingSuccessfullyFinishedKey] as AnyObject).boolValue)!
+        }
+        
+        if success {
+            // Check the authorization status.
+            PHPhotoLibrary.requestAuthorization { status in
+                if status == .authorized {
+                    // Save the movie file to the photo library and cleanup.
+                    PHPhotoLibrary.shared().performChanges({
+                        let options = PHAssetResourceCreationOptions()
+                        options.shouldMoveFile = true
+                        let creationRequest = PHAssetCreationRequest.forAsset()
+                        creationRequest.addResource(with: .video, fileURL: outputFileURL, options: options)
+                        
+                        // Specify the location the movie was recoreded
+                        creationRequest.location = self.locationManager.location
+                    }, completionHandler: { success, error in
+                        if !success {
+                            print("AVCam couldn't save the movie to your photo library: \(String(describing: error))")
+                        }
+                        cleanup()
+                    }
+                    )
+                } else {
+                    cleanup()
+                }
+            }
+        } else {
+            cleanup()
+        }
+        
+        // Enable the Camera and Record buttons to let the user switch camera and start another recording.
+        DispatchQueue.main.async {
+            // Only enable the ability to change camera if the device has more than one camera.
+            self.cameraButton.isEnabled = self.videoDeviceDiscoverySession.uniqueDevicePositionsCount > 1
+            self.recordButton.isEnabled = true
+            self.captureModeControl.isEnabled = true
+            self.recordButton.setImage(#imageLiteral(resourceName: "CaptureVideo"), for: [])
+        }
+    }
+    
+    */
     
     // Auto Layout
     func configurePhotoButton() {
@@ -219,6 +337,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             photoCameraButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             photoCameraButton.heightAnchor.constraint(equalToConstant: 70),
             photoCameraButton.widthAnchor.constraint(equalToConstant: 35)
+        ])
+    }
+    
+    func configureFlipCameraButton() {
+        view.addSubview(flipCameraButton)
+        
+        NSLayoutConstraint.activate([
+            flipCameraButton.widthAnchor.constraint(equalToConstant: 50),
+            flipCameraButton.heightAnchor.constraint(equalToConstant: 50),
+            flipCameraButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            flipCameraButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
         ])
     }
     
@@ -295,7 +424,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 }
 
 
-extension ViewController: AVCapturePhotoCaptureDelegate {
+extension ViewController: AVCapturePhotoCaptureDelegate, AVCaptureFileOutputRecordingDelegate {
+    
+    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+        
+    }
+    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let data = photo.fileDataRepresentation() else {
             return
