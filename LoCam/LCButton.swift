@@ -15,7 +15,7 @@ class LCButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configurePhotoButton()
-        configureVideoButton()
+//        configureVideoButton()
     }
     
     required init?(coder: NSCoder) {
@@ -25,15 +25,23 @@ class LCButton: UIButton {
     init(buttonType: UIButton) {
         super.init(frame: .zero)
         configurePhotoButton()
-        configureVideoButton()
+//        configureVideoButton()
     }
     
     private func configurePhotoButton() {
-        translatesAutoresizingMaskIntoConstraints = false
+//        translatesAutoresizingMaskIntoConstraints = false
+//
+//        let largeConfig = UIImage.SymbolConfiguration(pointSize: 120, weight: .regular, scale: .large)
+//        let photoButton = UIImage(systemName: "square", withConfiguration: largeConfig)
+//        photoButton?.withTintColor(.white)
+//        translatesAutoresizingMaskIntoConstraints = false
+        let buttonConfig = UIImage.SymbolConfiguration(pointSize: 120, weight: .regular, scale: .large)
+        let photoButton = UIImage(systemName: "square.inset.filled", withConfiguration: buttonConfig)
+        let button = UIButton()
         
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 120, weight: .regular, scale: .large)
-        let photoButton = UIImage(systemName: "square", withConfiguration: largeConfig)
-        photoButton?.withTintColor(.white)
+        button.tintColor = .white
+        button.setImage(photoButton, for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
     }
     
     private func configureVideoButton() {
