@@ -12,7 +12,6 @@
 		050C9AFE28093132002B493F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C9AFD28093132002B493F /* ViewController.swift */; };
 		050C9B0328093135002B493F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050C9B0228093135002B493F /* Assets.xcassets */; };
 		050C9B0628093135002B493F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050C9B0428093135002B493F /* LaunchScreen.storyboard */; };
-		0515CFA529B1054E00AE080E /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0515CFA429B1054E00AE080E /* File.swift */; };
 		0533932E299E3DEC001E4416 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533932D299E3DEC001E4416 /* VideoViewController.swift */; };
 		0533933029A7E089001E4416 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533932F29A7E089001E4416 /* PhotoViewController.swift */; };
 		0585BF5729B8A5DE007D1089 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0585BF5629B8A5DE007D1089 /* PreviewView.swift */; };
@@ -29,7 +28,6 @@
 		050C9B0228093135002B493F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		050C9B0528093135002B493F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		050C9B0728093135002B493F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0515CFA429B1054E00AE080E /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		0533932D299E3DEC001E4416 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		0533932F29A7E089001E4416 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		0585BF5629B8A5DE007D1089 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
@@ -74,7 +72,6 @@
 				0533932F29A7E089001E4416 /* PhotoViewController.swift */,
 				0533932D299E3DEC001E4416 /* VideoViewController.swift */,
 				0585BF5629B8A5DE007D1089 /* PreviewView.swift */,
-				0515CFA429B1054E00AE080E /* File.swift */,
 				05B1A6EB2900C575005DA69E /* LocationManager.swift */,
 				05FB6E4228D9F08800AF30D1 /* LCButton.swift */,
 				05FB6E4428DA15E900AF30D1 /* LCLabel.swift */,
@@ -163,7 +160,6 @@
 				0585BF5729B8A5DE007D1089 /* PreviewView.swift in Sources */,
 				0533933029A7E089001E4416 /* PhotoViewController.swift in Sources */,
 				050C9AFA28093132002B493F /* AppDelegate.swift in Sources */,
-				0515CFA529B1054E00AE080E /* File.swift in Sources */,
 				050C9AFC28093132002B493F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

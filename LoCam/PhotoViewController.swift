@@ -39,8 +39,10 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
     let dateLabel = LCLabel()
     let addressLabel = LCLabel()
     
-    var locationManager: CLLocationManager?
+    var locationManager = CLLocationManager()
+    
     let currentDate = Date()
+    let formatter = DateFormatter()
     
     enum CameraErrors: Swift.Error {
         case captureSessionAlreadyRunning
@@ -127,11 +129,14 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
 
         configureFlipCameraButton()
         
-        locationManager = CLLocationManager()
-        locationManager!.delegate = self
-        locationManager?.requestWhenInUseAuthorization()
-
-        dateLabel.text = "\(Date.now)"
+//        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        formatter.dateFormat = "MMM d, yyyy"
+        dateLabel.text = formatter.string(from: currentDate)
+        print(dateLabel.text as Any)
     }
     
     override func viewDidLayoutSubviews() {
@@ -209,10 +214,33 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
-
+    
+    private func savePhoto(_ image: UIImage) {
+        PHPhotoLibrary.shared().performChanges({
+            let request = PHAssetChangeRequest.creationRequestForAsset(from: image)
+            request.creationDate = Date()
+        }) { [weak self] success, error in
+            if success {
+                print("Photo saved successfully")
+            } else {
+                print("Error saving photo: \(error?.localizedDescription ?? "unknown error")")
+            }
+        }
+    }
     
     @objc private func tappedCameraButton() {
-        photoOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+        let settings = AVCapturePhotoSettings()
+        photoOutput.capturePhoto(with: settings, delegate: self)
+    }
+    
+    func switchCamera() {
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        locationLabel.text = "Lat: \(location.coordinate.latitude) Lon: \(location.coordinate.longitude)"
+        print(locationLabel.text as Any)
     }
     
    
@@ -272,7 +300,6 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
         
         NSLayoutConstraint.activate([
             dateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
-//            dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             dateLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: dateLabel.intrinsicContentSize.width / 2 - dateLabel.intrinsicContentSize.height),
             dateLabel.heightAnchor.constraint(equalToConstant: 15)
         ])
@@ -281,15 +308,18 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
 }
 
 extension PhotoViewController: AVCapturePhotoCaptureDelegate {
+    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard let data = photo.fileDataRepresentation() else {
+        if let error = error {
+            print("Error capturing photo: \(error.localizedDescription)")
             return
         }
         
-        guard let image = UIImage(data: data) else { return }
-        
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        
+        if let imageData = photo.fileDataRepresentation(), let image = UIImage(data: imageData) {
+            // show the captured photo in your image view
+            photoImageView.image = image
+            // save the photo to the photo library
+            savePhoto(image)
+        }
     }
 }
-
