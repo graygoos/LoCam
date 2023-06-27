@@ -16,6 +16,7 @@
 		0533933029A7E089001E4416 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533932F29A7E089001E4416 /* PhotoViewController.swift */; };
 		0585BF5729B8A5DE007D1089 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0585BF5629B8A5DE007D1089 /* PreviewView.swift */; };
 		05B1A6EC2900C575005DA69E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1A6EB2900C575005DA69E /* LocationManager.swift */; };
+		05B506F52A0CF632008F9542 /* PlannedFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B506F42A0CF632008F9542 /* PlannedFeatures.swift */; };
 		05FB6E4328D9F08800AF30D1 /* LCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FB6E4228D9F08800AF30D1 /* LCButton.swift */; };
 		05FB6E4528DA15E900AF30D1 /* LCLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FB6E4428DA15E900AF30D1 /* LCLabel.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		0533932F29A7E089001E4416 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		0585BF5629B8A5DE007D1089 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		05B1A6EB2900C575005DA69E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		05B506F42A0CF632008F9542 /* PlannedFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedFeatures.swift; sourceTree = "<group>"; };
 		05FB6E4228D9F08800AF30D1 /* LCButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCButton.swift; sourceTree = "<group>"; };
 		05FB6E4428DA15E900AF30D1 /* LCLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +77,7 @@
 				05B1A6EB2900C575005DA69E /* LocationManager.swift */,
 				05FB6E4228D9F08800AF30D1 /* LCButton.swift */,
 				05FB6E4428DA15E900AF30D1 /* LCLabel.swift */,
+				05B506F42A0CF632008F9542 /* PlannedFeatures.swift */,
 				050C9B0228093135002B493F /* Assets.xcassets */,
 				050C9B0428093135002B493F /* LaunchScreen.storyboard */,
 				050C9B0728093135002B493F /* Info.plist */,
@@ -156,6 +159,7 @@
 				0533932E299E3DEC001E4416 /* VideoViewController.swift in Sources */,
 				05FB6E4528DA15E900AF30D1 /* LCLabel.swift in Sources */,
 				05B1A6EC2900C575005DA69E /* LocationManager.swift in Sources */,
+				05B506F52A0CF632008F9542 /* PlannedFeatures.swift in Sources */,
 				050C9AFE28093132002B493F /* ViewController.swift in Sources */,
 				0585BF5729B8A5DE007D1089 /* PreviewView.swift in Sources */,
 				0533933029A7E089001E4416 /* PhotoViewController.swift in Sources */,

@@ -6,7 +6,7 @@ import Photos
 
 
 class VideoViewController: UIViewController {
-    
+    /*
     var isRecording: Bool = false
     private var permissionGranted = false
     var videoSession = AVCaptureSession()
@@ -172,6 +172,7 @@ class VideoViewController: UIViewController {
             stopVideoButton.isHidden = true
         }
     }
+    */
 }
 
 extension VideoViewController: AVCaptureFileOutputRecordingDelegate {

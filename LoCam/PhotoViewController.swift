@@ -4,8 +4,11 @@ import CoreLocation
 import Photos
 import UIKit
 
+import MobileCoreServices
+import CoreServices
+
 class PhotoViewController: UIViewController, CLLocationManagerDelegate {
-    
+
     // Capture Session
     var session: AVCaptureSession?
     // Photo Output
@@ -23,12 +26,15 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
     
     var photoInput: AVCaptureDeviceInput?
     
+    var rearCameraOn = true
+    
     var backCamera: AVCaptureDevice!
     var frontCamera: AVCaptureDevice!
-    var backInput: AVCaptureInput!
-    var frontInput: AVCaptureInput!
+    var backCameraInput: AVCaptureInput!
+    var frontCameraInput: AVCaptureInput!
+    var currentDevice: AVCaptureDevice?
     
-    var segmentImage = UIImageView()
+    var currentDeviceInput: AVCaptureDeviceInput?
     
     var videoVC = VideoViewController()
     
@@ -126,17 +132,18 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
         checkCameraPermissions()
 
         cameraButton.addTarget(self, action: #selector(tappedCameraButton), for: .touchUpInside)
+        flipCameraButton.addTarget(self, action: #selector(switchCamera), for: .touchUpInside)
 
         configureFlipCameraButton()
         
-//        locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        formatter.dateFormat = "MMM d, yyyy"
+        formatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
         dateLabel.text = formatter.string(from: currentDate)
-        print(dateLabel.text as Any)
+        
+        configureLabels()
     }
     
     override func viewDidLayoutSubviews() {
@@ -145,7 +152,6 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
         previewLayer.frame = view.bounds
         
         cameraButton.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height - 80)
-
     }
     
     
@@ -160,7 +166,7 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
                 }
                 // if permission was granted call setupCamera on the main thread
                 DispatchQueue.main.async {
-                    self?.setUpCamera()
+                    self?.setUpCamera(position: .back)
                 }
             }
         case .restricted:
@@ -168,57 +174,100 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
         case .denied:
             break
         case .authorized:
-            setUpCamera()
+            setUpCamera(position: .back)
         @unknown default:
             break
         }
     }
     
-    
-    private func setUpCamera() {
+    private func setUpCamera(position: AVCaptureDevice.Position) {
         let session = AVCaptureSession()
-        // try to get the device that we want to add
-        if let device = AVCaptureDevice.default(for: .video) {
+        session.sessionPreset = AVCaptureSession.Preset.photo
+        
+        // Remove existing inputs
+        for input in session.inputs {
+            session.removeInput(input)
+        }
+        
+        // Add video input
+        if let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: position) {
             do {
-                let input = try AVCaptureDeviceInput(device: device)
-                if session.canAddInput(input) {
-                    session.addInput(input)
-                }
-
-                if session.canAddOutput(photoOutput) {
-                    session.addOutput(photoOutput)
-                }
-
-                previewLayer.videoGravity = .resizeAspectFill
-                previewLayer.session = session
-
-                session.startRunning()
-                self.session = session
-            }
-            catch {
-                print(error)
-            }
-
-            // Add audio device
-            do {
-                let audioDevice = AVCaptureDevice.default(for: .audio)
-                let audioDeviceInput = try AVCaptureDeviceInput(device: audioDevice!)
-
-                if session.canAddInput(audioDeviceInput) {
-                    session.addInput(audioDeviceInput)
-                } else {
-                    print("Could not add audio device input to the session")
+                let videoInput = try AVCaptureDeviceInput(device: videoDevice)
+                if session.canAddInput(videoInput) {
+                    session.addInput(videoInput)
                 }
             } catch {
-                print("Could not create audio device input: \(error)")
+                print("Could not create video device input: \(error)")
             }
         }
+        
+        
+        // Add photo output
+        if session.canAddOutput(photoOutput) {
+            session.addOutput(photoOutput)
+        }
+        
+        // Set up preview layer
+        previewLayer.videoGravity = .resizeAspectFill
+        previewLayer.session = session
+        
+        // Start running the session
+        if !session.isRunning {
+            DispatchQueue.global(qos: .userInitiated).async {
+                session.startRunning()
+            }
+        }
+        
+        self.session = session
     }
+
     
+    @objc private func tappedCameraButton() {
+        let settings = AVCapturePhotoSettings()
+        photoOutput.capturePhoto(with: settings, delegate: self)
+    }
+
+    private var currentCameraInput: AVCaptureDeviceInput?
+    
+    
+    @objc func switchCamera() {
+        guard let currentCameraInput = session?.inputs.first as? AVCaptureDeviceInput else {
+            return
+        }
+
+        session?.beginConfiguration()
+        session?.removeInput(currentCameraInput)
+
+        let newCameraPosition: AVCaptureDevice.Position = currentCameraInput.device.position == .back ? .front : .back
+        let newCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: newCameraPosition)
+
+        do {
+            let newVideoInput = try AVCaptureDeviceInput(device: newCamera!)
+            if ((session?.canAddInput(newVideoInput)) != nil) {
+                session?.addInput(newVideoInput)
+            }
+        } catch let error {
+            print("Error adding video input: \(error.localizedDescription)")
+            session?.addInput(currentCameraInput)
+        }
+
+        session?.commitConfiguration()
+    }
+
+
     private func savePhoto(_ image: UIImage) {
         PHPhotoLibrary.shared().performChanges({
             let request = PHAssetChangeRequest.creationRequestForAsset(from: image)
             request.creationDate = Date()
+
+            // Add location information to the photo
+            if let location = self.locationManager.location {
+                request.location = location
+            }
+
+            // Add a text overlay with the date and location
+
+
         }) { [weak self] success, error in
             if success {
                 print("Photo saved successfully")
@@ -227,32 +276,18 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
+
+
     
-    @objc private func tappedCameraButton() {
-        let settings = AVCapturePhotoSettings()
-        photoOutput.capturePhoto(with: settings, delegate: self)
-    }
-    
-    func switchCamera() {
-        
-    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         locationLabel.text = "Lat: \(location.coordinate.latitude) Lon: \(location.coordinate.longitude)"
-        print(locationLabel.text as Any)
     }
     
    
     // MARK: - Auto Layout
     // Auto Layout
-    func configurePhotoButton() {
-        NSLayoutConstraint.activate([
-            photoCameraButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
-            photoCameraButton.heightAnchor.constraint(equalToConstant: 70),
-            photoCameraButton.widthAnchor.constraint(equalToConstant: 35)
-        ])
-    }
     
     func configureFlipCameraButton() {
         view.addSubview(flipCameraButton)
@@ -260,51 +295,39 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
         NSLayoutConstraint.activate([
             flipCameraButton.widthAnchor.constraint(equalToConstant: 50),
             flipCameraButton.heightAnchor.constraint(equalToConstant: 50),
-            flipCameraButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            flipCameraButton.centerYAnchor.constraint(equalTo: cameraButton.centerYAnchor),
             flipCameraButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
         ])
     }
     
-    func configureStartRecordVideoButton() {
-        view.addSubview(startVideoButton)
-        startVideoButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            startVideoButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
-            startVideoButton.heightAnchor.constraint(equalToConstant: 70),
-            startVideoButton.widthAnchor.constraint(equalToConstant: 35)
-        ])
-    }
-    
-    func configureStopRecordVideoButton() {
-        NSLayoutConstraint.activate([
-            stopVideoButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
-            stopVideoButton.heightAnchor.constraint(equalToConstant: 70),
-            stopVideoButton.widthAnchor.constraint(equalToConstant: 35)
-        ])
-    }
-    
     func configureLabels() {
+        let locationLabelSize = locationLabel.sizeThatFits(.init(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude))
+        let dateLabelSize = dateLabel.sizeThatFits(.init(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude))
         
-        locationLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
-        locationLabel.textColor = .white
+        // Set the bounds of the label to the appropriate size
+        dateLabel.bounds = CGRect(x: 0, y: 0, width: 200, height: 30)
+        
+        // Rotate the label by 90 degrees
+        dateLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.backgroundColor = .white
         
         NSLayoutConstraint.activate([
-            locationLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            locationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            locationLabel.heightAnchor.constraint(equalToConstant: 15)
+            view.trailingAnchor.constraint(equalTo: dateLabel.centerXAnchor, constant: 20 + dateLabelSize.height / 2),
+            view.centerYAnchor.constraint(equalTo: dateLabel.centerYAnchor)
         ])
         
-        dateLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
-        dateLabel.textColor = .white
-        
+        locationLabel.bounds = CGRect(x: 0, y: 0, width: 200, height: 30)
+        locationLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2 - locationLabelSize.height / 2)
+        locationLabel.translatesAutoresizingMaskIntoConstraints = false
+        locationLabel.backgroundColor = .white
+
         NSLayoutConstraint.activate([
-            dateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
-            dateLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: dateLabel.intrinsicContentSize.width / 2 - dateLabel.intrinsicContentSize.height),
-            dateLabel.heightAnchor.constraint(equalToConstant: 15)
+            view.leadingAnchor.constraint(equalTo: locationLabel.centerXAnchor, constant: -20),
+            view.centerYAnchor.constraint(equalTo: locationLabel.centerYAnchor)
         ])
     }
-    
 }
 
 extension PhotoViewController: AVCapturePhotoCaptureDelegate {
@@ -323,3 +346,4 @@ extension PhotoViewController: AVCapturePhotoCaptureDelegate {
         }
     }
 }
+
