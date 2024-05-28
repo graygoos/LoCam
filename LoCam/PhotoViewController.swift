@@ -74,6 +74,7 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
         return control
     }()
     
+    // Timer label
     private let timerLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
