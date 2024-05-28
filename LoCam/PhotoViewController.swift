@@ -179,11 +179,13 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
         } else {
             // Video mode
             segmentedControl.isHidden = true
+            flipCameraButton.isHidden = true
             if videoOutput.isRecording {
                 videoOutput.stopRecording()
                 timer?.invalidate()
                 timerLabel.isHidden = true
                 segmentedControl.isHidden = false
+                flipCameraButton.isHidden = false
             } else {
                 guard let connection = videoOutput.connection(with: .video) else { return }
                 if connection.isVideoOrientationSupported {
