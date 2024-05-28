@@ -299,6 +299,13 @@ class PhotoViewController: UIViewController, CLLocationManagerDelegate {
                 session.addInput(input)
             }
             
+            if let audioDevice = AVCaptureDevice.default(for: .audio) {
+                let audioInput = try AVCaptureDeviceInput(device: audioDevice)
+                if session.canAddInput(audioInput) {
+                    session.addInput(audioInput)
+                }
+            }
+            
             if session.canAddOutput(photoOutput) {
                 session.addOutput(photoOutput)
             }
