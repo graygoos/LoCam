@@ -3,43 +3,33 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		050C9AFA28093132002B493F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C9AF928093132002B493F /* AppDelegate.swift */; };
-		050C9AFC28093132002B493F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C9AFB28093132002B493F /* SceneDelegate.swift */; };
-		050C9AFE28093132002B493F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C9AFD28093132002B493F /* ViewController.swift */; };
-		050C9B0328093135002B493F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050C9B0228093135002B493F /* Assets.xcassets */; };
-		050C9B0628093135002B493F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050C9B0428093135002B493F /* LaunchScreen.storyboard */; };
-		0533932E299E3DEC001E4416 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533932D299E3DEC001E4416 /* VideoViewController.swift */; };
-		0533933029A7E089001E4416 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533932F29A7E089001E4416 /* PhotoViewController.swift */; };
-		0585BF5729B8A5DE007D1089 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0585BF5629B8A5DE007D1089 /* PreviewView.swift */; };
-		05B1A6EC2900C575005DA69E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1A6EB2900C575005DA69E /* LocationManager.swift */; };
-		05B506F52A0CF632008F9542 /* PlannedFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B506F42A0CF632008F9542 /* PlannedFeatures.swift */; };
-		05FB6E4328D9F08800AF30D1 /* LCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FB6E4228D9F08800AF30D1 /* LCButton.swift */; };
-		05FB6E4528DA15E900AF30D1 /* LCLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FB6E4428DA15E900AF30D1 /* LCLabel.swift */; };
+		05C866012C04DD4A00252D3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C866002C04DD4A00252D3B /* AppDelegate.swift */; };
+		05C866032C04DD4A00252D3B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C866022C04DD4A00252D3B /* SceneDelegate.swift */; };
+		05C866052C04DD4A00252D3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C866042C04DD4A00252D3B /* ViewController.swift */; };
+		05C866082C04DD4A00252D3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05C866062C04DD4A00252D3B /* Main.storyboard */; };
+		05C8660A2C04DD4B00252D3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C866092C04DD4B00252D3B /* Assets.xcassets */; };
+		05C8660D2C04DD4B00252D3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05C8660B2C04DD4B00252D3B /* LaunchScreen.storyboard */; };
+		05C866152C04DE1700252D3B /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C866142C04DE1700252D3B /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		050C9AF628093132002B493F /* LoCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		050C9AF928093132002B493F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		050C9AFB28093132002B493F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		050C9AFD28093132002B493F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		050C9B0228093135002B493F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		050C9B0528093135002B493F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		050C9B0728093135002B493F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0533932D299E3DEC001E4416 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		0533932F29A7E089001E4416 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
-		0585BF5629B8A5DE007D1089 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
-		05B1A6EB2900C575005DA69E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		05B506F42A0CF632008F9542 /* PlannedFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedFeatures.swift; sourceTree = "<group>"; };
-		05FB6E4228D9F08800AF30D1 /* LCButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCButton.swift; sourceTree = "<group>"; };
-		05FB6E4428DA15E900AF30D1 /* LCLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCLabel.swift; sourceTree = "<group>"; };
+		05C865FD2C04DD4A00252D3B /* LoCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05C866002C04DD4A00252D3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		05C866022C04DD4A00252D3B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		05C866042C04DD4A00252D3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05C866072C04DD4A00252D3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05C866092C04DD4B00252D3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05C8660C2C04DD4B00252D3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		05C8660E2C04DD4B00252D3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05C866142C04DE1700252D3B /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		050C9AF328093132002B493F /* Frameworks */ = {
+		05C865FA2C04DD4A00252D3B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -49,38 +39,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		050C9AED28093132002B493F = {
+		05C865F42C04DD4A00252D3B = {
 			isa = PBXGroup;
 			children = (
-				050C9AF828093132002B493F /* LoCam */,
-				050C9AF728093132002B493F /* Products */,
+				05C865FF2C04DD4A00252D3B /* LoCam */,
+				05C865FE2C04DD4A00252D3B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		050C9AF728093132002B493F /* Products */ = {
+		05C865FE2C04DD4A00252D3B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				050C9AF628093132002B493F /* LoCam.app */,
+				05C865FD2C04DD4A00252D3B /* LoCam.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		050C9AF828093132002B493F /* LoCam */ = {
+		05C865FF2C04DD4A00252D3B /* LoCam */ = {
 			isa = PBXGroup;
 			children = (
-				050C9AF928093132002B493F /* AppDelegate.swift */,
-				050C9AFB28093132002B493F /* SceneDelegate.swift */,
-				050C9AFD28093132002B493F /* ViewController.swift */,
-				0533932F29A7E089001E4416 /* PhotoViewController.swift */,
-				0533932D299E3DEC001E4416 /* VideoViewController.swift */,
-				0585BF5629B8A5DE007D1089 /* PreviewView.swift */,
-				05B1A6EB2900C575005DA69E /* LocationManager.swift */,
-				05FB6E4228D9F08800AF30D1 /* LCButton.swift */,
-				05FB6E4428DA15E900AF30D1 /* LCLabel.swift */,
-				05B506F42A0CF632008F9542 /* PlannedFeatures.swift */,
-				050C9B0228093135002B493F /* Assets.xcassets */,
-				050C9B0428093135002B493F /* LaunchScreen.storyboard */,
-				050C9B0728093135002B493F /* Info.plist */,
+				05C866002C04DD4A00252D3B /* AppDelegate.swift */,
+				05C866022C04DD4A00252D3B /* SceneDelegate.swift */,
+				05C866142C04DE1700252D3B /* PhotoViewController.swift */,
+				05C866042C04DD4A00252D3B /* ViewController.swift */,
+				05C866062C04DD4A00252D3B /* Main.storyboard */,
+				05C866092C04DD4B00252D3B /* Assets.xcassets */,
+				05C8660B2C04DD4B00252D3B /* LaunchScreen.storyboard */,
+				05C8660E2C04DD4B00252D3B /* Info.plist */,
 			);
 			path = LoCam;
 			sourceTree = "<group>";
@@ -88,13 +73,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		050C9AF528093132002B493F /* LoCam */ = {
+		05C865FC2C04DD4A00252D3B /* LoCam */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 050C9B0A28093135002B493F /* Build configuration list for PBXNativeTarget "LoCam" */;
+			buildConfigurationList = 05C866112C04DD4B00252D3B /* Build configuration list for PBXNativeTarget "LoCam" */;
 			buildPhases = (
-				050C9AF228093132002B493F /* Sources */,
-				050C9AF328093132002B493F /* Frameworks */,
-				050C9AF428093132002B493F /* Resources */,
+				05C865F92C04DD4A00252D3B /* Sources */,
+				05C865FA2C04DD4A00252D3B /* Frameworks */,
+				05C865FB2C04DD4A00252D3B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -102,79 +87,82 @@
 			);
 			name = LoCam;
 			productName = LoCam;
-			productReference = 050C9AF628093132002B493F /* LoCam.app */;
+			productReference = 05C865FD2C04DD4A00252D3B /* LoCam.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		050C9AEE28093132002B493F /* Project object */ = {
+		05C865F52C04DD4A00252D3B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
-					050C9AF528093132002B493F = {
-						CreatedOnToolsVersion = 13.0;
+					05C865FC2C04DD4A00252D3B = {
+						CreatedOnToolsVersion = 15.2;
 					};
 				};
 			};
-			buildConfigurationList = 050C9AF128093132002B493F /* Build configuration list for PBXProject "LoCam" */;
-			compatibilityVersion = "Xcode 13.0";
+			buildConfigurationList = 05C865F82C04DD4A00252D3B /* Build configuration list for PBXProject "LoCam" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 050C9AED28093132002B493F;
-			productRefGroup = 050C9AF728093132002B493F /* Products */;
+			mainGroup = 05C865F42C04DD4A00252D3B;
+			productRefGroup = 05C865FE2C04DD4A00252D3B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				050C9AF528093132002B493F /* LoCam */,
+				05C865FC2C04DD4A00252D3B /* LoCam */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		050C9AF428093132002B493F /* Resources */ = {
+		05C865FB2C04DD4A00252D3B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				050C9B0628093135002B493F /* LaunchScreen.storyboard in Resources */,
-				050C9B0328093135002B493F /* Assets.xcassets in Resources */,
+				05C8660D2C04DD4B00252D3B /* LaunchScreen.storyboard in Resources */,
+				05C8660A2C04DD4B00252D3B /* Assets.xcassets in Resources */,
+				05C866082C04DD4A00252D3B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		050C9AF228093132002B493F /* Sources */ = {
+		05C865F92C04DD4A00252D3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05FB6E4328D9F08800AF30D1 /* LCButton.swift in Sources */,
-				0533932E299E3DEC001E4416 /* VideoViewController.swift in Sources */,
-				05FB6E4528DA15E900AF30D1 /* LCLabel.swift in Sources */,
-				05B1A6EC2900C575005DA69E /* LocationManager.swift in Sources */,
-				05B506F52A0CF632008F9542 /* PlannedFeatures.swift in Sources */,
-				050C9AFE28093132002B493F /* ViewController.swift in Sources */,
-				0585BF5729B8A5DE007D1089 /* PreviewView.swift in Sources */,
-				0533933029A7E089001E4416 /* PhotoViewController.swift in Sources */,
-				050C9AFA28093132002B493F /* AppDelegate.swift in Sources */,
-				050C9AFC28093132002B493F /* SceneDelegate.swift in Sources */,
+				05C866052C04DD4A00252D3B /* ViewController.swift in Sources */,
+				05C866152C04DE1700252D3B /* PhotoViewController.swift in Sources */,
+				05C866012C04DD4A00252D3B /* AppDelegate.swift in Sources */,
+				05C866032C04DD4A00252D3B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		050C9B0428093135002B493F /* LaunchScreen.storyboard */ = {
+		05C866062C04DD4A00252D3B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				050C9B0528093135002B493F /* Base */,
+				05C866072C04DD4A00252D3B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05C8660B2C04DD4B00252D3B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05C8660C2C04DD4B00252D3B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -182,14 +170,14 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		050C9B0828093135002B493F /* Debug */ = {
+		05C8660F2C04DD4B00252D3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -219,7 +207,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -233,24 +222,25 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		050C9B0928093135002B493F /* Release */ = {
+		05C866102C04DD4B00252D3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -280,7 +270,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -288,17 +279,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		050C9B0B28093135002B493F /* Debug */ = {
+		05C866122C04DD4B00252D3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -310,8 +301,10 @@
 				INFOPLIST_FILE = LoCam/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -319,17 +312,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tinciti.LoCam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		050C9B0C28093135002B493F /* Release */ = {
+		05C866132C04DD4B00252D3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -341,8 +330,10 @@
 				INFOPLIST_FILE = LoCam/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -350,38 +341,34 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tinciti.LoCam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		050C9AF128093132002B493F /* Build configuration list for PBXProject "LoCam" */ = {
+		05C865F82C04DD4A00252D3B /* Build configuration list for PBXProject "LoCam" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				050C9B0828093135002B493F /* Debug */,
-				050C9B0928093135002B493F /* Release */,
+				05C8660F2C04DD4B00252D3B /* Debug */,
+				05C866102C04DD4B00252D3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		050C9B0A28093135002B493F /* Build configuration list for PBXNativeTarget "LoCam" */ = {
+		05C866112C04DD4B00252D3B /* Build configuration list for PBXNativeTarget "LoCam" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				050C9B0B28093135002B493F /* Debug */,
-				050C9B0C28093135002B493F /* Release */,
+				05C866122C04DD4B00252D3B /* Debug */,
+				05C866132C04DD4B00252D3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 050C9AEE28093132002B493F /* Project object */;
+	rootObject = 05C865F52C04DD4A00252D3B /* Project object */;
 }
