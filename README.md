@@ -1,7 +1,7 @@
 # LoCam
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/52054174/232252999-133d79c3-574a-4926-afd2-995529ea17fa.png" width="250" height="250">
+    <img src="https://github.com/graygoos/LoCam/assets/52054174/bc63da41-b8e3-4804-be8f-9bf52b51cf22" width="250" height="250">
 </p>
 
 LoCam is a camera app for iOS that displays the user's current location in longitude and latitude, as well as the date and time on the screen while taking photos and videos. Additionally, the app adds location and date metadata to the saved photos and videos.
