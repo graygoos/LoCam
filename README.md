@@ -29,7 +29,9 @@ To use LoCam, follow these steps:
 
 * Swift  
 * CoreLocation: For retrieving the user's location information.  
-* AVFoundation: For capturing photos and videos.  
+* AVFoundation: For capturing photos and videos.
+
+## Planned Features
 
 ## Contributing
 
