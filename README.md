@@ -10,7 +10,11 @@ LoCam is a camera app for iOS that displays the user's current location in longi
 
 * Display location and date on Screen: The app displays the user's current location in longitude and latitude, as well as the date and time on the screen while taking photos and videos.  
 * Add location and date metadata: LoCam adds location and date metadata to the saved photos and videos, allowing you to easily view the location and date information in your photo library or when sharing the photos.    
-* Easy sharing: With the included metadata, sharing your photos and videos with others is simple and can provide context for the time and location where they were taken.  
+* Easy sharing: With the included metadata, sharing your photos and videos with others is simple and can provide context for the time and location where they were taken.
+
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 ## Getting Started
 
