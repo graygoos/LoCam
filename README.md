@@ -1,16 +1,20 @@
 # LoCam
 
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/52054174/232252999-133d79c3-574a-4926-afd2-995529ea17fa.png" width="250" height="250">
-</p>
-
 LoCam is a camera app for iOS that displays the user's current location in longitude and latitude, as well as the date and time on the screen while taking photos and videos. Additionally, the app adds location and date metadata to the saved photos and videos.
+
+<p align="center">
+    <img src="https://github.com/graygoos/LoCam/assets/52054174/38558512-0bf3-405b-8f8a-95c62374aa4f" width="250" height="250">
+</p>
 
 ## Features
 
 * Display location and date on Screen: The app displays the user's current location in longitude and latitude, as well as the date and time on the screen while taking photos and videos.  
 * Add location and date metadata: LoCam adds location and date metadata to the saved photos and videos, allowing you to easily view the location and date information in your photo library or when sharing the photos.    
-* Easy sharing: With the included metadata, sharing your photos and videos with others is simple and can provide context for the time and location where they were taken.  
+* Easy sharing: With the included metadata, sharing your photos and videos with others is simple and can provide context for the time and location where they were taken.
+
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 ## Getting Started
 
@@ -25,7 +29,9 @@ To use LoCam, follow these steps:
 
 * Swift  
 * CoreLocation: For retrieving the user's location information.  
-* AVFoundation: For capturing photos and videos.  
+* AVFoundation: For capturing photos and videos.
+
+## Planned Features
 
 ## Contributing
 
