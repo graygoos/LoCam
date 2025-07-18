@@ -13,6 +13,14 @@
 		05C8660A2C04DD4B00252D3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C866092C04DD4B00252D3B /* Assets.xcassets */; };
 		05C866152C04DE1700252D3B /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C866142C04DE1700252D3B /* PhotoViewController.swift */; };
 		05C866172C060B6E00252D3B /* Experiments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C866162C060B6E00252D3B /* Experiments.swift */; };
+		05C866182C04DD4A00252D3B /* MediaMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C866192C04DD4A00252D3B /* MediaMetadata.swift */; };
+		05C8661A2C04DD4A00252D3B /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C8661B2C04DD4A00252D3B /* SecurityManager.swift */; };
+		05C8661C2C04DD4A00252D3B /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C8661D2C04DD4A00252D3B /* SettingsManager.swift */; };
+		05C8661E2C04DD4A00252D3B /* CloudStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C8661F2C04DD4A00252D3B /* CloudStorageManager.swift */; };
+		05C866202C04DD4A00252D3B /* EmergencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C866212C04DD4A00252D3B /* EmergencyManager.swift */; };
+		05C866222C04DD4A00252D3B /* WatermarkOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C866232C04DD4A00252D3B /* WatermarkOverlayView.swift */; };
+		05C866242C04DD4A00252D3B /* WatermarkProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C866252C04DD4A00252D3B /* WatermarkProcessor.swift */; };
+		05C866262C04DD4A00252D3B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C866272C04DD4A00252D3B /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,14 @@
 		05C8660E2C04DD4B00252D3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05C866142C04DE1700252D3B /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		05C866162C060B6E00252D3B /* Experiments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experiments.swift; sourceTree = "<group>"; };
+		05C866192C04DD4A00252D3B /* MediaMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMetadata.swift; sourceTree = "<group>"; };
+		05C8661B2C04DD4A00252D3B /* SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
+		05C8661D2C04DD4A00252D3B /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		05C8661F2C04DD4A00252D3B /* CloudStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageManager.swift; sourceTree = "<group>"; };
+		05C866212C04DD4A00252D3B /* EmergencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyManager.swift; sourceTree = "<group>"; };
+		05C866232C04DD4A00252D3B /* WatermarkOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkOverlayView.swift; sourceTree = "<group>"; };
+		05C866252C04DD4A00252D3B /* WatermarkProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkProcessor.swift; sourceTree = "<group>"; };
+		05C866272C04DD4A00252D3B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +75,52 @@
 				05C866002C04DD4A00252D3B /* AppDelegate.swift */,
 				05C866022C04DD4A00252D3B /* SceneDelegate.swift */,
 				05C866142C04DE1700252D3B /* PhotoViewController.swift */,
-				05C866162C060B6E00252D3B /* Experiments.swift */,
 				05C866042C04DD4A00252D3B /* ViewController.swift */,
+				05C866282C04DD4A00252D3B /* Models */,
+				05C866292C04DD4A00252D3B /* Managers */,
+				05C8662A2C04DD4A00252D3B /* Views */,
+				05C8662B2C04DD4A00252D3B /* Utils */,
+				05C866162C060B6E00252D3B /* Experiments.swift */,
 				05C866092C04DD4B00252D3B /* Assets.xcassets */,
 				05C8660E2C04DD4B00252D3B /* Info.plist */,
 			);
 			path = LoCam;
+			sourceTree = "<group>";
+		};
+		05C866282C04DD4A00252D3B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				05C866192C04DD4A00252D3B /* MediaMetadata.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		05C866292C04DD4A00252D3B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				05C8661B2C04DD4A00252D3B /* SecurityManager.swift */,
+				05C8661D2C04DD4A00252D3B /* SettingsManager.swift */,
+				05C8661F2C04DD4A00252D3B /* CloudStorageManager.swift */,
+				05C866212C04DD4A00252D3B /* EmergencyManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		05C8662A2C04DD4A00252D3B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				05C866232C04DD4A00252D3B /* WatermarkOverlayView.swift */,
+				05C866272C04DD4A00252D3B /* SettingsViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		05C8662B2C04DD4A00252D3B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				05C866252C04DD4A00252D3B /* WatermarkProcessor.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +197,14 @@
 				05C866012C04DD4A00252D3B /* AppDelegate.swift in Sources */,
 				05C866172C060B6E00252D3B /* Experiments.swift in Sources */,
 				05C866032C04DD4A00252D3B /* SceneDelegate.swift in Sources */,
+				05C866182C04DD4A00252D3B /* MediaMetadata.swift in Sources */,
+				05C8661A2C04DD4A00252D3B /* SecurityManager.swift in Sources */,
+				05C8661C2C04DD4A00252D3B /* SettingsManager.swift in Sources */,
+				05C8661E2C04DD4A00252D3B /* CloudStorageManager.swift in Sources */,
+				05C866202C04DD4A00252D3B /* EmergencyManager.swift in Sources */,
+				05C866222C04DD4A00252D3B /* WatermarkOverlayView.swift in Sources */,
+				05C866242C04DD4A00252D3B /* WatermarkProcessor.swift in Sources */,
+				05C866262C04DD4A00252D3B /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

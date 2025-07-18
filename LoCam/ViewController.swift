@@ -7,13 +7,12 @@
 
 import UIKit
 
+// This file is no longer used - functionality moved to PhotoViewController
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
 }
 
