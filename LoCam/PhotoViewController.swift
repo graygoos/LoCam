@@ -641,16 +641,16 @@ extension PhotoViewController {
     private func addWatermarkToImage(_ image: UIImage) -> UIImage {
         // Implementation for adding watermark to image
         return WatermarkProcessor.shared.addWatermark(to: image,
-                                                     location: currentLocation,
-                                                     settings: SettingsManager.shared.watermarkSettings)
+                                                      location: currentLocation,
+                                                      settings: SettingsManager.shared.watermarkSettings)
     }
     
     private func addWatermarkToVideo(at url: URL, completion: @escaping (URL) -> Void) {
         // Implementation for adding watermark to video
         WatermarkProcessor.shared.addWatermark(to: url,
-                                             location: currentLocation,
-                                             settings: SettingsManager.shared.watermarkSettings,
-                                             completion: completion)
+                                               location: currentLocation,
+                                               settings: SettingsManager.shared.watermarkSettings,
+                                               completion: completion)
     }
     
     private func saveImageToPhotoLibrary(_ image: UIImage, metadata: MediaMetadata) {
